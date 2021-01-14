@@ -1,4 +1,11 @@
 header{
     color: #fff;
     background-color: #333;
+    padding: 25px;
+}
+
+.food-results{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 10px;
 }
