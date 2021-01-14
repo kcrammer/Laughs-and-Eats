@@ -9,16 +9,16 @@ $( document ).ready(function() {
     function getQuery () {
 
         // These are currently hardcoded for testing
-        var category = ["programming", "misc", "dark"];
-        var blacklist = ["nsfw", "religious", "political"]
+        var category = [];
+        var blacklist = ["nsfw"]
         var jokeAmount = 5;
         var type = ["twopart"];
-        var searchString = "food";
+        var searchString = "";
 
         var url = "https://v2.jokeapi.dev/joke/";
 
         // Sets category to Any if all categories are set, otherwise add each individual catergory
-        if (category.length === 6) {
+        if (category.length === 0) {
             url += "Any";
         } else {
             for (i = 0; i < category.length; i++) {
@@ -28,11 +28,13 @@ $( document ).ready(function() {
                     url += category[i] + ","; // Adds a comma to url if it's not the last in the array
                 }
             }
+            
         }
+        url += "?"
 
         // Adds blacklist flags to url if there are any
         if (blacklist.length !== 0) {
-            url += "?blacklistFlags=";
+            url += "&blacklistFlags=";
             for (i = 0; i < blacklist.length; i++) {
                 if (i === blacklist.length - 1) {
                     url += blacklist[i];
@@ -57,7 +59,7 @@ $( document ).ready(function() {
         
         // returns https://v2.jokeapi.dev/joke/programming,misc,dark?blacklistFlags=nsfw,religious,political&type=twopart&contains=food&amount=5
         console.log(url);
-        return url;
+        return url
 
     }
 
@@ -67,10 +69,16 @@ $( document ).ready(function() {
 
         var query = getQuery();
 
-//        $.ajax({
-//            url: query,
-//            method: "GET"
-//        }).then(showJoke());
+        $.ajax({
+            url: query,
+            method: "GET"
+        }).then(function(response){
+            console.log(response)
+            // if joke is single line response.joke retrieves the joke
+            // if joke is two part response.setup and response.delivery retrieves the two parts of the joke
+            
+             
+            });
     };
 
     test();
