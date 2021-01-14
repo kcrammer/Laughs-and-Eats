@@ -17,16 +17,18 @@
       <h1 class="text-center mb-4">Laughs and Eats</h1>
   </header>
 
-    <div class="container ml-5 mb-5">
+    <div class="container mb-5">
+      <h2 class="text-center">Search Form</h2>
 
-      <h2>Search Form</h2>
+      <div class="row">
 
-      <form action="search-form">
+        <div class="col-lg-6">
 
-        <h4>Restaurant Criteria</h4>
         
-        <h4>Joke Criteria</h4>
 
+        <form action="search-form" class="text-center">
+
+          <h4>Joke Criteria</h4>
         <h5>Select Categories:</h5>
           
 
@@ -56,75 +58,122 @@
           <div class="blacklist"></div>
             <h5>Select Flags to Blacklist:</h5>
 
+          <h5>Select Categories:</h5>
             <div>
-              <input type="checkbox" id="nsfw" name="nsfw"
+              <input type="checkbox" id="programming" name="programming"
                     checked>
-              <label for="nsfw">NSFW</label>
+              <label for="programming">Programming</label>
             </div>
 
             <div>
-              <input type="checkbox" id="religious" name="religious">
-              <label for="religious">Religious</label>
+              <input type="checkbox" id="misc" name="misc">
+              <label for="misc">Miscellaneous</label>
             </div>
               
             <div>
-              <input type="checkbox" id="political" name="political"
+              <input type="checkbox" id="dark" name="dark"
                     checked>
-              <label for="political">Political</label>
+              <label for="dark">Dark</label>
             </div>
 
             <div>
-              <input type="checkbox" id="racist" name="racist">
-              <label for="racist">Racist</label>
+              <input type="checkbox" id="pun" name="pun">
+              <label for="pun">Pun</label>
             </div>
 
             <div>
-              <input type="checkbox" id="sexist" name="sexist"
+              <input type="checkbox" id="spooky" name="spooky"
                     checked>
-              <label for="sexist">Sexist</label>
+              <label for="spooky">Spooky</label>
             </div>
 
             <div>
-              <input type="checkbox" id="explicit" name="explicit">
-              <label for="explicit">Explicit</label>
+              <input type="checkbox" id="xmas" name="xmas">
+              <label for="xmas">Christmas</label>
             </div>
-          </div>
 
-          <div class="joke-type">
-            <h5>Select at least one joke type:</h5>
-            <div>
-              <input type="checkbox" id="single" name="single">
-              <label for="single">Single</label>
+            <div class="blacklist"></div>
+              <h5>Select Flags to Blacklist:</h5>
+
+              <div>
+                <input type="checkbox" id="nsfw" name="nsfw"
+                      checked>
+                <label for="nsfw">NSFW</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="religious" name="religious">
+                <label for="religious">Religious</label>
+              </div>
+                
+              <div>
+                <input type="checkbox" id="political" name="political"
+                      checked>
+                <label for="political">Political</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="racist" name="racist">
+                <label for="racist">Racist</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="sexist" name="sexist"
+                      checked>
+                <label for="sexist">Sexist</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="explicit" name="explicit">
+                <label for="explicit">Explicit</label>
+              </div>
+          
+
+            <div class="joke-type">
+              <h5>Select at least one joke type:</h5>
+              <div>
+                <input type="checkbox" id="single" name="single">
+                <label for="single">Single</label>
+              </div>
+              <div>
+                <input type="checkbox" id="two-part" name="two-part">
+                <label for="two-part">Two-Part</label>
+              </div>
             </div>
-            <div>
-              <input type="checkbox" id="two-part" name="two-part">
-              <label for="two-part">Two-Part</label>
+
+            <h5>Search keywords:</h5>
+            <input type="text" id="keyword-search">
+
+            <h5>How many jokes do you need?</h5>
+            <select name="number-jokes" id="number-jokes">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+
+            <div class="input-group-append">
+              <button class="input-group-text btn btm-primary" id="basic-addon2">Search</button>
             </div>
+          </form>
           </div>
-
-          <h5>Search keywords:</h5>
-          <input type="text" id="keyword-search">
-
-          <h5>How many jokes do you need?</h5>
-          <select name="number-jokes" id="number-jokes">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
-
-          <div class="input-group-append">
-            <button class="input-group-text btn btm-primary" id="basic-addon2">Search</button>
+           
+      
+          <div class="col-lg-6">
+            <form class="text-center" action="restaurant-criteria">
+            <h4>Restaurant Criteria</h4>
+          
+      
+            </form>
           </div>
-
-      </form>
-    </div>
+  </div>
+  </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
