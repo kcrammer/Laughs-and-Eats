@@ -6,90 +6,130 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://unpkg.com/sv443-joke-api@0.0.8/web/index.js"></script>
 
-    <title>Laugh & Eats</title>
+    <title>Laughs & Eats</title>
 
   </head>
 
   <body>
-    <div class="jumbotron text-center h-50 bg-dark text-white">Laughs & Eats</div>
+    <header>
+      <h1 class="text-center mb-4">Laughs and Eats</h1>
+  </header>
 
-    <h2>Search Form</h2>
+    <div class="container ml-5 mb-5">
 
-    <form action="search-form">
+      <h2>Search Form</h2>
 
-      <h4>Restaurant Criteria</h4>
-      
-      <h4>Joke Criteria</h4>
+      <form action="search-form">
 
-        <div>
-          <input type="checkbox" id="programming" name="programming"
-                checked>
-          <label for="programming">Programming</label>
-        </div>
+        <h4>Restaurant Criteria</h4>
+        
+        <h4>Joke Criteria</h4>
 
-        <div>
-          <input type="checkbox" id="misc" name="misc">
-          <label for="misc">Miscellaneous</label>
-        </div>
-          
-        <div>
-          <input type="checkbox" id="dark" name="dark"
-                checked>
-          <label for="programming">Dark</label>
-        </div>
+        <h5>Select Categories:</h5>
+          <div>
+            <input type="checkbox" id="programming" name="programming"
+                  checked>
+            <label for="programming">Programming</label>
+          </div>
 
-        <div>
-          <input type="checkbox" id="pun" name="pun">
-          <label for="pun">Pun</label>
-        </div>
+          <div>
+            <input type="checkbox" id="misc" name="misc">
+            <label for="misc">Miscellaneous</label>
+          </div>
+            
+          <div>
+            <input type="checkbox" id="dark" name="dark"
+                  checked>
+            <label for="dark">Dark</label>
+          </div>
 
-        <div>
-          <input type="checkbox" id="spooky" name="spooky"
-                checked>
-          <label for="programming">Spooky</label>
-        </div>
+          <div>
+            <input type="checkbox" id="pun" name="pun">
+            <label for="pun">Pun</label>
+          </div>
 
-        <div>
-          <input type="checkbox" id="xmas" name="xmas">
-          <label for="misc">Christmas</label>
-        </div>
+          <div>
+            <input type="checkbox" id="spooky" name="spooky"
+                  checked>
+            <label for="spooky">Spooky</label>
+          </div>
 
-        <h4>Select Flags to Blacklist</h4>
+          <div>
+            <input type="checkbox" id="xmas" name="xmas">
+            <label for="xmas">Christmas</label>
+          </div>
 
-        <div>
-          <input type="checkbox" id="nsfw" name="nsfw"
-                checked>
-          <label for="programming">NSFW</label>
-        </div>
+          <h5>Select Flags to Blacklist:</h5>
 
-        <div>
-          <input type="checkbox" id="religious" name="misc">
-          <label for="religious">Religious</label>
-        </div>
-          
-        <div>
-          <input type="checkbox" id="political" name="political"
-                checked>
-          <label for="programming">Political</label>
-        </div>
+          <div>
+            <input type="checkbox" id="nsfw" name="nsfw"
+                  checked>
+            <label for="nsfw">NSFW</label>
+          </div>
 
-        <div>
-          <input type="checkbox" id="racist" name="racist">
-          <label for="pun">Racist</label>
-        </div>
+          <div>
+            <input type="checkbox" id="religious" name="religious">
+            <label for="religious">Religious</label>
+          </div>
+            
+          <div>
+            <input type="checkbox" id="political" name="political"
+                  checked>
+            <label for="political">Political</label>
+          </div>
 
-        <div>
-          <input type="checkbox" id="sexist" name="sexist"
-                checked>
-          <label for="programming">Sexist</label>
-        </div>
+          <div>
+            <input type="checkbox" id="racist" name="racist">
+            <label for="racist">Racist</label>
+          </div>
 
-        <div>
-          <input type="checkbox" id="explicit" name="explicit">
-          <label for="misc">Explicit</label>
-        </div>
-    </form>
+          <div>
+            <input type="checkbox" id="sexist" name="sexist"
+                  checked>
+            <label for="sexist">Sexist</label>
+          </div>
 
+          <div>
+            <input type="checkbox" id="explicit" name="explicit">
+            <label for="explicit">Explicit</label>
+          </div>
+
+          <h5>Select at least one joke type:</h5>
+          <div>
+            <input type="checkbox" id="single" name="single">
+            <label for="single">Single</label>
+          </div>
+          <div>
+            <input type="checkbox" id="two-part" name="two-part">
+            <label for="two-part">Two-Part</label>
+          </div>
+
+          <h5>Search keywords:</h5>
+          <input type="text" id="keyword-search">
+          <div class="input-group-append">
+            <button class="input-group-text btn btm-primary" id="basic-addon2">Search</button>
+          </div>
+
+          <h5>How many jokes do you need?</h5>
+          <select name="number-jokes" id="number-jokes">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+
+          <div class="input-group-append">
+            <button class="input-group-text btn btm-primary" id="basic-addon2">Search</button>
+          </div>
+
+      </form>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
