@@ -1,5 +1,45 @@
 $( document ).ready(function() {
 
+
+    // ZOMATO SECTION
+
+    // =====================================================
+
+    var city = "New York City";
+    var category = "1";           // Delivery
+
+    function getLocationID() {
+        
+        $.ajax({
+          url: "https://developers.zomato.com/api/v2.1/locations?query=" + city,
+          method: "GET",
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('user-key', '2e3bd49f413e2bd7583f307f409118a5');
+          },
+        }).then(function(response) {
+          console.log(response);
+          coordSearch(response.location_suggestions[0].latitude, response.location_suggestions[0].longitude, response.location_suggestions[0].entity_id);
+        });
+      }
+
+      function coordSearch(lat, lon, id) {
+        $.ajax({
+          url: "https://developers.zomato.com/api/v2.1/search?entity_id=" + id + "&lat=" + lat + "&lon=" + lon + "&category=" + category,
+          method: "GET",
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('user-key', '2e3bd49f413e2bd7583f307f409118a5');
+          },
+        }).then(function(response) {
+          console.log(response);
+        });
+      }
+      getLocationID();
+
+
+    // =====================================================
+
+
+
     // Jokes commands:
     // Format: ?format=format i.e json, xml, yaml, txt
     // Blacklist Flags: ?blacklistFlags=flag1[,flag2,...] i.e. nsfw, religious, political, racist, sexist, explicit
