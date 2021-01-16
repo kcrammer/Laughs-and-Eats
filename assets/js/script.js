@@ -97,52 +97,15 @@ $( document ).ready(function() {
 
     }
 
-    // $("#search").click(function(event) {
-        function test() {
-            //event.preventDefault();
+    // save url into local storage and then redirects to results.html
+    function saveCriteria() {
+        event.preventDefault();
     
-            var query = getQuery();
+        var query = getQuery();
+        localStorage.setItem("query", query);
     
-            $.ajax({
-                url: query,
-                method: "GET"
-            }).then(function(response){
-                console.log(response)
-                // if joke is single line response.joke retrieves the joke
-                // if joke is two part response.setup and response.delivery retrieves the two parts of the joke
-                var jokes = response.jokes
-                
-                for (i = 0; i < jokes.length; i++) {
-                    if (jokes[i].type == "twopart") {
-                        var jokeset = jokes[i].setup;
-                        var jokedelivery = jokes[i].delivery;
-                        // var setupDiv = $("<div>");
-                        // var deliveryDiv = $("<div>");
+        window.location.href = "results.html";
+    };
     
-                        // setupDiv.text(jokeset + ". " + jokedelivery);
-                        // deliveryDiv.text(jokedelivery);
-                        var myjoke = $("<li>").text(jokeset + ". " + jokedelivery)
-    
-                        // $("#my-joke").append(setupDiv);
-                        // $("#my-joke").append(deliveryDiv);
-                        $("#joke-entries").append(myjoke)
-                    }
-                    else if (jokes[i].type == "single"){
-                        var jokeset = jokes[i].joke;
-                        
-                        var jokeDiv = $("<div>");                    
-    
-                        jokeDiv.text(jokeset);                   
-    
-                        $("#my-joke").append(jokeDiv);  
-                        $("#my-joke").append($("<div>''</div>"));          
-                    }
-                }
-                
-                 
-                });
-        };
-    
-        test();
-
+    $("button").click(saveCriteria);
 });
