@@ -22,17 +22,17 @@
 
       <div class="row">
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 joke-container">
 
         
 
         <form action="search-form" class="text-center">
 
-          <h4>Joke Criteria</h4>
-        <h5>Select Categories:</h5>
+          <h4 class="mb-5">Get Your Laughs</h4>
+          <h5>Joke Categories:</h5>
           
 
-          <div id="category-choices">
+          <div id="category-choices" class="mb-3">
             <input type="checkbox" id="programming" name="programming"
                   checked>
             <label for="programming">Programming</label>
@@ -57,7 +57,7 @@
             <label for="xmas">Christmas</label>
           </div>
 
-          <div id="blacklist">
+          <div id="blacklist" class="mb-3">
             <h5>Select Flags to Blacklist:</h5>
 
               <input type="checkbox" id="nsfw" name="nsfw"
@@ -84,7 +84,7 @@
           <label for="explicit">Explicit</label>
             </div>
 
-            <div id="joke-type">
+            <div id="joke-type" class="mb-3">
               <h5>Select at least one joke type:</h5>
                 <input type="checkbox" id="single" name="single" checked>
                 <label for="single">Single</label>
@@ -92,22 +92,26 @@
                 <label for="two-part">Two-Part</label>
             </div>
 
-            <h5>Search keywords:</h5>
-            <input type="text" id="keyword-search">
+            <div class="mb-3">
+              <h5>Search keywords:</h5>
+              <input type="text" id="keyword-search">
+            </div>
 
-            <h5>How many jokes do you need?</h5>
-            <select name="number-jokes" id="number-jokes">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
+            <div class="mb-3">
+              <h5>How many jokes do you need?</h5>
+              <select name="number-jokes" id="number-jokes">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+          </div>
 
             <div class="input-group-append">
               <button class="input-group-text btn btm-primary " id="basic-addon2">Search</button>

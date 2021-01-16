@@ -1,9 +1,22 @@
 header{
     color: #fff;
-    background-color: #333;
+    background-color: #59a4ff;
     padding: 25px;
 }
 
+/* index.html */
+.joke-container{
+    border: solid #ff9959 10px;
+    border-radius: 10px;
+    padding: 20px;
+    color: #ffc259;
+    background-color: #ff6f59;
+}
+
+
+
+
+/* results html page */
 .food-results{
     border: solid black 1px;
     border-radius: 5px;
