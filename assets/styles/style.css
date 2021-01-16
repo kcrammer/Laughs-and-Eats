@@ -23,7 +23,10 @@ header{
     background-color: #ff6f59;
 }
 
-
+.about{
+    background-color: #59a4ff;
+    padding: 20px;
+}
 
 
 /* results html page */
