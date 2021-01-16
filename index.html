@@ -15,7 +15,7 @@
   <body>
     <header>
       <h1 class="text-center mb-4">Laughs and Eats</h1>
-  </header>
+    </header>
 
     <div class="container mb-5">
       <h2 class="text-center">Search Form</h2>
@@ -24,8 +24,8 @@
 
         <div class="col-lg-6 joke-container">
 
+      <div class="col-lg-6">
         
-
         <form action="search-form" class="text-center">
 
           <h4 class="mb-5">Get Your Laughs</h4>
@@ -33,15 +33,13 @@
           
 
           <div id="category-choices" class="mb-3">
-            <input type="checkbox" id="programming" name="programming"
-                  checked>
+            <input type="checkbox" id="programming" name="programming">
             <label for="programming">Programming</label>
 
             <input type="checkbox" id="misc" name="misc">
             <label for="misc">Miscellaneous</label>
 
-            <input type="checkbox" id="dark" name="dark"
-                  checked>
+            <input type="checkbox" id="dark" name="dark">
             <label for="dark">Dark</label>
 
             <br>
@@ -49,8 +47,7 @@
             <input type="checkbox" id="pun" name="pun">
             <label for="pun">Pun</label>
 
-            <input type="checkbox" id="spooky" name="spooky"
-                  checked>
+            <input type="checkbox" id="spooky" name="spooky">
             <label for="spooky">Spooky</label>
 
             <input type="checkbox" id="xmas" name="xmas">
@@ -60,15 +57,13 @@
           <div id="blacklist" class="mb-3">
             <h5>Select Flags to Blacklist:</h5>
 
-              <input type="checkbox" id="nsfw" name="nsfw"
-                      checked>
+              <input type="checkbox" id="nsfw" name="nsfw">
                 <label for="nsfw">NSFW</label>
 
                 <input type="checkbox" id="religious" name="religious">
                 <label for="religious">Religious</label>
 
-                <input type="checkbox" id="political" name="political"
-                checked>
+                <input type="checkbox" id="political" name="political">
           <label for="political">Political</label>
 
               <br>
@@ -76,8 +71,7 @@
               <input type="checkbox" id="racist" name="racist">
                 <label for="racist">Racist</label>
 
-                <input type="checkbox" id="sexist" name="sexist"
-                checked>
+                <input type="checkbox" id="sexist" name="sexist">
           <label for="sexist">Sexist</label>
 
           <input type="checkbox" id="explicit" name="explicit">
@@ -86,7 +80,7 @@
 
             <div id="joke-type" class="mb-3">
               <h5>Select at least one joke type:</h5>
-                <input type="checkbox" id="single" name="single" checked>
+                <input type="checkbox" id="single" name="single">
                 <label for="single">Single</label>
                 <input type="checkbox" id="two-part" name="two-part">
                 <label for="two-part">Two-Part</label>
@@ -116,34 +110,65 @@
             <div class="input-group-append">
               <button class="input-group-text btn btm-primary " id="basic-addon2">Search</button>
             </div>
-          </form>
           </div>
+
+          <h5>Search keywords:</h5>
+          <input type="text" id="keyword-search">
+
+          <h5>How many jokes do you need?</h5>
+          <select name="number-jokes" id="number-jokes">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+
+          <div class="input-group-append">
+            <button class="input-group-text btn btm-primary " id="basic-addon2">Search</button>
+          </div>
+        </form>
+      </div>
            
       
           <div class="col-lg-6">
             <form class="text-center" action="restaurant-criteria">
-            <h4>Restaurant Criteria</h4>
-            <h5>Select Restaurant Category:</h5>
-            <select name="category-choices" id="category-choices">
-              <option value="1">Delivery</option>
-              <option value="2">Dine-out</option>
-              <option value="3">Nightlifr</option>
-              <option value="4">Catching-up</option>
-              <option value="5">Takeaway</option>
-              <option value="6">Cafes</option>
-              <option value="7">Daily Menus</option>
-              <option value="8">Breakfast</option>
-              <option value="9">Lunch</option>
-              <option value="10">Dinner</option>
-              <option value="11">Pubs & Bars</option>
-              <option value="13">Pocket Friendly Delivery</option>
-              <option value="14">Clubs & Lounges</option>
-            </select>
+              <h4>Restaurant Criteria</h4>
+
+              <h5>Select Restaurant Category:</h5>
+
+              <select name="category-choices" id="category-choices">
+                <option value="1">Delivery</option>
+                <option value="2">Dine-out</option>
+                <option value="3">Nightlife</option>
+                <option value="4">Catching-up</option>
+                <option value="5">Takeaway</option>
+                <option value="6">Cafes</option>
+                <option value="7">Daily Menus</option>
+                <option value="8">Breakfast</option>
+                <option value="9">Lunch</option>
+                <option value="10">Dinner</option>
+                <option value="11">Pubs & Bars</option>
+                <option value="13">Pocket Friendly Delivery</option>
+                <option value="14">Clubs & Lounges</option>
+              </select>
       
-            </form>
-          </div>
+              <h5>Search by city:</h5>
+                <input type="text" id="city-search">
+              
+              <h5>Search by cuisine:</h5>
+                <input type="text" id="cuisine-search">
+
+
+          </form>
+      </div>
   </div>
-  </div>
+</div>
 
     <script src="assets/js/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
