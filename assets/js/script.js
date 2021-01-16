@@ -8,14 +8,49 @@ $( document ).ready(function() {
   
     function getQuery () {
 
-        // These are currently hardcoded for testing
         var category = [];
-        var blacklist = ["nsfw"]
-        var jokeAmount = 5;
-        var type = ["twopart"];
+        var blacklist = [];
+        var jokeAmount = 0;
+        var type = [];
         var searchString = "";
 
         var url = "https://v2.jokeapi.dev/joke/";
+
+        // Checks what categories are checked off by the user and adds them to each indivdual array
+
+        // Categories
+        for (i = 0; i < $("#category-choices").children().length; i++) {
+            if ($("#category-choices").children()[i].checked) {
+                category.push($("#category-choices").children()[i].getAttribute("id"));
+            }
+        }
+        
+        // Blacklist
+        for (i = 0; i < $("#blacklist").children().length; i++) {
+            if ($("#blacklist").children()[i].checked) {
+                blacklist.push($("#blacklist").children()[i].getAttribute("id"));
+            }
+        }
+
+        // Joke Type
+        for (i = 0; i < $("#joke-type").children().length; i++) {
+            if ($("#joke-type").children()[i].checked) {
+                type.push($("#joke-type").children()[i].getAttribute("id"));
+            }
+        }
+
+        // Number of jokes
+        jokeAmount = parseInt( $("#number-jokes option:selected").text() );
+        // Keyword search
+        searchString = $("#keyword-search").text();
+
+        console.log(category);
+        console.log(blacklist);
+        console.log(type);
+        console.log(jokeAmount);
+        console.log(searchString);
+
+        
 
         // Sets category to Any if all categories are set, otherwise add each individual catergory
         if (category.length === 0) {
@@ -56,31 +91,58 @@ $( document ).ready(function() {
 
         // Sets number of jokes to display
         url += "&amount=" + jokeAmount;
-        
-        // returns https://v2.jokeapi.dev/joke/programming,misc,dark?blacklistFlags=nsfw,religious,political&type=twopart&contains=food&amount=5
+
         console.log(url);
         return url
 
     }
 
     // $("#search").click(function(event) {
-    function test() {
-        //event.preventDefault();
-
-        var query = getQuery();
-
-        $.ajax({
-            url: query,
-            method: "GET"
-        }).then(function(response){
-            console.log(response)
-            // if joke is single line response.joke retrieves the joke
-            // if joke is two part response.setup and response.delivery retrieves the two parts of the joke
-            
-             
-            });
-    };
-
-    test();
+        function test() {
+            //event.preventDefault();
+    
+            var query = getQuery();
+    
+            $.ajax({
+                url: query,
+                method: "GET"
+            }).then(function(response){
+                console.log(response)
+                // if joke is single line response.joke retrieves the joke
+                // if joke is two part response.setup and response.delivery retrieves the two parts of the joke
+                var jokes = response.jokes
+                
+                for (i = 0; i < jokes.length; i++) {
+                    if (jokes[i].type == "twopart") {
+                        var jokeset = jokes[i].setup;
+                        var jokedelivery = jokes[i].delivery;
+                        // var setupDiv = $("<div>");
+                        // var deliveryDiv = $("<div>");
+    
+                        // setupDiv.text(jokeset + ". " + jokedelivery);
+                        // deliveryDiv.text(jokedelivery);
+                        var myjoke = $("<li>").text(jokeset + ". " + jokedelivery)
+    
+                        // $("#my-joke").append(setupDiv);
+                        // $("#my-joke").append(deliveryDiv);
+                        $("#joke-entries").append(myjoke)
+                    }
+                    else if (jokes[i].type == "single"){
+                        var jokeset = jokes[i].joke;
+                        
+                        var jokeDiv = $("<div>");                    
+    
+                        jokeDiv.text(jokeset);                   
+    
+                        $("#my-joke").append(jokeDiv);  
+                        $("#my-joke").append($("<div>''</div>"));          
+                    }
+                }
+                
+                 
+                });
+        };
+    
+        test();
 
 });
