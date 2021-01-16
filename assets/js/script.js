@@ -5,10 +5,9 @@ $( document ).ready(function() {
 
     // =====================================================
 
-    var city = "New York City";
-    var category = "1";           // Delivery
-
     function getLocationID() {
+        var city = $("#city-search").val().trim();
+        console.log("city: " + city);
         
         $.ajax({
           url: "https://developers.zomato.com/api/v2.1/locations?query=" + city,
@@ -18,22 +17,59 @@ $( document ).ready(function() {
           },
         }).then(function(response) {
           console.log(response);
-          coordSearch(response.location_suggestions[0].latitude, response.location_suggestions[0].longitude, response.location_suggestions[0].entity_id);
+          var zomQuery = getZomQuery(response.location_suggestions[0].latitude, response.location_suggestions[0].longitude, response.location_suggestions[0].entity_id);
+          localStorage.setItem("zomQuery", zomQuery);   
+          window.location.href = "results.html";
         });
-      }
+    }
 
-      function coordSearch(lat, lon, id) {
-        $.ajax({
-          url: "https://developers.zomato.com/api/v2.1/search?entity_id=" + id + "&lat=" + lat + "&lon=" + lon + "&category=" + category,
-          method: "GET",
-          beforeSend: function (xhr) {
-            xhr.setRequestHeader('user-key', '2e3bd49f413e2bd7583f307f409118a5');
-          },
-        }).then(function(response) {
-          console.log(response);
-        });
-      }
-      getLocationID();
+    function getZomQuery(lat, lon, id) {
+
+        var url = "https://developers.zomato.com/api/v2.1/search?entity_id=" + id + "&lat=" + lat + "&lon=" + lon;
+        var category = "";
+        var cuisine = [];
+        var sort = "";
+        var order = "";
+        var sortArray = [0,0,"cost", "rating"]
+        var orderArray = [0,0,"asc","desc"]
+
+        category = $("#food-category-choices option:selected").val();
+
+        if (category !== "0") {
+            url += "&category=" + category;
+        }
+
+        for (i = 0; i < $("#cuisine-search").children().length; i++) {
+            if ($("#cuisine-search").children()[i].checked) {
+                cuisine.push($("#cuisine-search").children()[i].getAttribute("id"));
+            }
+        }
+
+        if (cuisine.length !== 0) {
+            url += "&cuisines=";
+
+            for (i = 0; i < cuisine.length; i++) {
+                if (i === cuisine.length - 1) {
+                    url += cuisine[i];
+                } else {
+                    url += cuisine[i] + "%2C"; // Adds a comma to url if it's not the last in the array
+                }
+            }
+        }
+
+        sort = $("#sort-by option:selected").val();
+        order = $("#sort-order option:selected").val();
+
+        console.log("sort:" + sort);
+        console.log("order: " + order);
+
+        if (sort !== "1" && order !== "1") {
+            url += "&sort=" + sortArray[sort] + "&order=" + orderArray[order];
+        }
+
+        console.log(url);
+        return url;
+    }
 
 
     // =====================================================
@@ -46,7 +82,7 @@ $( document ).ready(function() {
     // Joke type: ?type=type i.e. single, twopart
     // Joke amount: ?amount=number
   
-    function getQuery () {
+    function getQuery() {
 
         var category = [];
         var blacklist = [];
@@ -133,18 +169,16 @@ $( document ).ready(function() {
         url += "&amount=" + jokeAmount;
 
         console.log(url);
-        return url
+        localStorage.setItem("query", url);
 
+        // Gets Zomato crietria
+        getLocationID();
     }
 
     // save url into local storage and then redirects to results.html
     function saveCriteria() {
         event.preventDefault();
-    
-        var query = getQuery();
-        localStorage.setItem("query", query);
-    
-        window.location.href = "results.html";
+        getQuery();
     };
     
     $("button").click(saveCriteria);
