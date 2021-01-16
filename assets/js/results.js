@@ -11,7 +11,7 @@ $( document ).ready(function() {
         // These are currently hardcoded for testing
         var category = [];
         var blacklist = ["nsfw"]
-        var jokeAmount = 5;
+        var jokeAmount = 1;
         var type = ["twopart"];
         var searchString = "";
 
@@ -76,9 +76,19 @@ $( document ).ready(function() {
             console.log(response)
             // if joke is single line response.joke retrieves the joke
             // if joke is two part response.setup and response.delivery retrieves the two parts of the joke
-            var jokes = response.jokes
+
             
-            for (i = 0; i < jokes.length; i++) {
+            var jokes = response.jokes
+
+            if (jokes == null){
+                var jokeset = response.setup;
+                var jokedelivery = response.delivery;
+
+                var myjoke = $("<li>").text(jokeset + ". " + jokedelivery);
+
+                $("#joke-entries").append(myjoke);
+            }
+            else {for (i = 0; i < jokes.length; i++) {
                 if (jokes[i].type == "twopart") {
                     var jokeset = jokes[i].setup;
                     var jokedelivery = jokes[i].delivery;
@@ -87,7 +97,7 @@ $( document ).ready(function() {
 
                     // setupDiv.text(jokeset + ". " + jokedelivery);
                     // deliveryDiv.text(jokedelivery);
-                    var myjoke = $("<li>").text(jokeset + ". " + jokedelivery)
+                    var myjoke = $("<li>").text(jokeset + " " + jokedelivery)
 
                     // $("#my-joke").append(setupDiv);
                     // $("#my-joke").append(deliveryDiv);
@@ -106,7 +116,7 @@ $( document ).ready(function() {
             }
             
              
-            });
+            }});
     };
 
     test();
