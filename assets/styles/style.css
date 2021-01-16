@@ -23,6 +23,11 @@ header{
     background-color: #ff6f59;
 }
 
+.form-title{
+    padding-bottom: 5px;
+    border-bottom: #ff9959 solid 2px;
+}
+
 .about{
     background-color: #59a4ff;
     padding: 20px;
