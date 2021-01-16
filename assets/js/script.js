@@ -1,5 +1,45 @@
 $( document ).ready(function() {
 
+
+    // ZOMATO SECTION
+
+    // =====================================================
+
+    var city = "New York City";
+    var category = "1";           // Delivery
+
+    function getLocationID() {
+        
+        $.ajax({
+          url: "https://developers.zomato.com/api/v2.1/locations?query=" + city,
+          method: "GET",
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('user-key', '2e3bd49f413e2bd7583f307f409118a5');
+          },
+        }).then(function(response) {
+          console.log(response);
+          coordSearch(response.location_suggestions[0].latitude, response.location_suggestions[0].longitude, response.location_suggestions[0].entity_id);
+        });
+      }
+
+      function coordSearch(lat, lon, id) {
+        $.ajax({
+          url: "https://developers.zomato.com/api/v2.1/search?entity_id=" + id + "&lat=" + lat + "&lon=" + lon + "&category=" + category,
+          method: "GET",
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('user-key', '2e3bd49f413e2bd7583f307f409118a5');
+          },
+        }).then(function(response) {
+          console.log(response);
+        });
+      }
+      getLocationID();
+
+
+    // =====================================================
+
+
+
     // Jokes commands:
     // Format: ?format=format i.e json, xml, yaml, txt
     // Blacklist Flags: ?blacklistFlags=flag1[,flag2,...] i.e. nsfw, religious, political, racist, sexist, explicit
@@ -97,52 +137,15 @@ $( document ).ready(function() {
 
     }
 
-    // $("#search").click(function(event) {
-        function test() {
-            //event.preventDefault();
+    // save url into local storage and then redirects to results.html
+    function saveCriteria() {
+        event.preventDefault();
     
-            var query = getQuery();
+        var query = getQuery();
+        localStorage.setItem("query", query);
     
-            $.ajax({
-                url: query,
-                method: "GET"
-            }).then(function(response){
-                console.log(response)
-                // if joke is single line response.joke retrieves the joke
-                // if joke is two part response.setup and response.delivery retrieves the two parts of the joke
-                var jokes = response.jokes
-                
-                for (i = 0; i < jokes.length; i++) {
-                    if (jokes[i].type == "twopart") {
-                        var jokeset = jokes[i].setup;
-                        var jokedelivery = jokes[i].delivery;
-                        // var setupDiv = $("<div>");
-                        // var deliveryDiv = $("<div>");
+        window.location.href = "results.html";
+    };
     
-                        // setupDiv.text(jokeset + ". " + jokedelivery);
-                        // deliveryDiv.text(jokedelivery);
-                        var myjoke = $("<li>").text(jokeset + ". " + jokedelivery)
-    
-                        // $("#my-joke").append(setupDiv);
-                        // $("#my-joke").append(deliveryDiv);
-                        $("#joke-entries").append(myjoke)
-                    }
-                    else if (jokes[i].type == "single"){
-                        var jokeset = jokes[i].joke;
-                        
-                        var jokeDiv = $("<div>");                    
-    
-                        jokeDiv.text(jokeset);                   
-    
-                        $("#my-joke").append(jokeDiv);  
-                        $("#my-joke").append($("<div>''</div>"));          
-                    }
-                }
-                
-                 
-                });
-        };
-    
-        test();
-
+    $("button").click(saveCriteria);
 });
