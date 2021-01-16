@@ -110,7 +110,7 @@
             <div class="input-group-append">
               <button class="input-group-text btn btm-primary " id="basic-addon2">Search</button>
             </div>
-          
+
         </form>
       </div>
            
@@ -121,7 +121,7 @@
 
               <h5>Select Restaurant Category:</h5>
 
-              <select name="category-choices" id="category-choices">
+              <select name="food-category-choices" id="food-category-choices">
                 <option value="1">Delivery</option>
                 <option value="2">Dine-out</option>
                 <option value="3">Nightlife</option>
@@ -141,7 +141,25 @@
                 <input type="text" id="city-search">
               
               <h5>Search by cuisine:</h5>
-                <input type="text" id="cuisine-search">
+              <input type="checkbox" id="152" name="African">
+                <label for="African">African</label>
+              <input type="checkbox" id="1" name="American">
+                <label for="American">American</label>
+
+              <h5>Sort by:</h5>
+
+              <select name="sorting-categories" id="sort-by">
+                <option value="1"></option>
+                <option value="2">cost</option>
+                <option value="3">rating</option>
+              </select>
+
+              <h5>Order:</h5>
+              <select name="sorting-order" id="sort-order">
+                <option value="1">ascending</option>
+                <option value="2">decending</option>
+              </select>
+                
 
 
           </form>
