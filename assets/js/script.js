@@ -176,10 +176,10 @@ $( document ).ready(function() {
     }
 
     // save url into local storage and then redirects to results.html
-    function saveCriteria() {
+    function saveCriteria(event) {
         event.preventDefault();
         getQuery();
     };
     
-    $("button").click(saveCriteria);
+    $("button").click(saveCriteria());
 });
