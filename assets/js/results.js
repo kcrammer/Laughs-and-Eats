@@ -28,7 +28,11 @@ $( document ).ready(function() {
                 var workingImg = $("<img>").attr("class", "card-img-top").attr("alt", "food-pic");
                 var cardDiv = $("<div>").attr("class", "card-body");
                 var titleTag = $("<h5>").attr("class", "card-title");
-                var detailsDiv = $("<div>")
+                var detailsDiv = $("<div>");
+                var mapLink = $("<a>");
+
+                mapLink.attr("href", "https://www.google.com/maps/search/?api=1&query=" + restaurant[i].restaurant.name + "+" + restaurant[i].restaurant.location.address);
+                mapLink.attr("target", "_blank");
 
 
                 // if no thumbnail remove alt attribute so it does not show up in the html
@@ -63,7 +67,7 @@ $( document ).ready(function() {
                 }
 
 
-                detailsDiv.append($("<p>").text("Address: " + address))
+                detailsDiv.append(mapLink.text("Address: " + address))
                 detailsDiv.append($("<p>").text("Phone: " + phoneNum))
                 detailsDiv.append($("<p>").text("User Ratings: " + userScore + ", " + userRating))
                 detailsDiv.append($("<p>").text("Cuisine: " + cuisine))
