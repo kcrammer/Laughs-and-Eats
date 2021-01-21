@@ -8,6 +8,12 @@ $( document ).ready(function() {
     var start = 0
     var finish = 4
 
+    function saveButtonClick() {
+        event.preventDefault();
+
+        console.log(this.attr("id"))
+    }
+
     // this function creates divs in html to place information from zomato and will iterate start and finish variable so if this function is called again it will iterate throught the next 4 restaurants in the array until there are no more restaurants
     function createLocations() {
         
@@ -22,6 +28,7 @@ $( document ).ready(function() {
             var titleTag = $("<h5>").attr("class", "card-title");
             var detailsDiv = $("<div>");
             var mapLink = $("<a>");
+            
 
             mapLink.attr("href", "https://www.google.com/maps/search/?api=1&query=" + restaurant[i].restaurant.name + "+" + restaurant[i].restaurant.location.address);
             mapLink.attr("target", "_blank");
@@ -29,7 +36,7 @@ $( document ).ready(function() {
 
             // if no thumbnail put in this placeholder image
             if (restaurant[i].restaurant.thumb == "") {
-                workingImg.attr('src', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3I66sHZ_BqxNXrtyEIjoRV2UouTA9FGjeHJYaQXTP_7bUBgCC&s")
+                workingImg.attr('src', "http://clipart-library.com/images/BigrpRd6T.png")
             }
             else {
                 workingImg.attr('src', restaurant[i].restaurant.thumb)
@@ -45,6 +52,11 @@ $( document ).ready(function() {
             var userScore = restaurant[i].restaurant.user_rating.aggregate_rating
             var userRating = restaurant[i].restaurant.user_rating.rating_text
             var hours = restaurant[i].restaurant.timings
+            var saveID = restaurant[i].restaurant.id
+           
+
+            var saveBtn = $("<button>").attr("id", saveID).text("Save Favorites")
+            saveBtn.attr("class", "btn btn-primary save-button")
 
             //loop to create a number of dollar signs based on the price value in the DOM
             var price = ""
@@ -65,6 +77,8 @@ $( document ).ready(function() {
             detailsDiv.append($("<p>").text("Price range: " + price))
             detailsDiv.append($("<p>").text("Hours: " + hours))
             detailsDiv.append($("<p>").text(highlight))
+            detailsDiv.append(saveBtn)
+            
 
             cardDiv.append(titleTag);
             cardDiv.append(detailsDiv);
@@ -76,7 +90,7 @@ $( document ).ready(function() {
 
         start = start + 4;
         finish = finish + 4;
-        console.log(start, finish)
+        
     }
 
     // zomato API call function
@@ -130,7 +144,7 @@ $( document ).ready(function() {
                     var jokeset = response.setup;
                     var jokedelivery = response.delivery;
                     
-                    var myjoke = $("<li>").text(jokeset + " " + jokedelivery)
+                    var myjoke = $("<li>").text(jokeset + " " + jokedelivery).attr("class", "list-group-item")
 
                     $("#joke-entries").append(myjoke)
                 }
@@ -138,7 +152,7 @@ $( document ).ready(function() {
                 else if (response.type == "single"){
                     var jokeset = response.joke;
                    
-                    var myjoke = $("<li>").text(jokeset)               
+                    var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item")              
 
                     $("#joke-entries").append(myjoke);          
                 }
@@ -150,7 +164,7 @@ $( document ).ready(function() {
                         var jokeset = jokes[i].setup;
                         var jokedelivery = jokes[i].delivery;
                         
-                        var myjoke = $("<li>").text(jokeset + " " + jokedelivery)
+                        var myjoke = $("<li>").text(jokeset + " " + jokedelivery).attr("class", "list-group-item")
 
                         $("#joke-entries").append(myjoke)
                     }
@@ -158,7 +172,7 @@ $( document ).ready(function() {
                     else if (jokes[i].type == "single"){
                         var jokeset = jokes[i].joke;
                        
-                        var myjoke = $("<li>").text(jokeset)               
+                        var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item")               
 
                         $("#joke-entries").append(myjoke);          
                     }
@@ -171,4 +185,6 @@ $( document ).ready(function() {
 
 
     $("#more-results").click(createLocations)
+
+    $(".save-button").click(saveButtonClick)
 });
