@@ -5,6 +5,7 @@ $( document ).ready(function() {
 
     // =====================================================
 
+    // Gets the Lat/Lon location of the searched city
     function getLocationID() {
         var city = $("#city-search").val().trim();
         console.log("city: " + city);
@@ -18,11 +19,16 @@ $( document ).ready(function() {
         }).then(function(response) {
           console.log(response);
           var zomQuery = getZomQuery(response.location_suggestions[0].latitude, response.location_suggestions[0].longitude, response.location_suggestions[0].entity_id);
-          localStorage.setItem("zomQuery", zomQuery);   
+          
+          // Stores Zomato Query URL to storage
+          localStorage.setItem("zomQuery", zomQuery);
+          
+          // Opens the results page
           window.location.href = "results.html";
         });
     }
 
+    // Creates a url for the Zomato API based on the user's selection
     function getZomQuery(lat, lon, id) {
 
         var url = "https://developers.zomato.com/api/v2.1/search?entity_id=" + id + "&lat=" + lat + "&lon=" + lon;
@@ -74,13 +80,9 @@ $( document ).ready(function() {
 
     // =====================================================
 
+    // JOKES SECTION
 
-
-    // Jokes commands:
-    // Format: ?format=format i.e json, xml, yaml, txt
-    // Blacklist Flags: ?blacklistFlags=flag1[,flag2,...] i.e. nsfw, religious, political, racist, sexist, explicit
-    // Joke type: ?type=type i.e. single, twopart
-    // Joke amount: ?amount=number
+    // =====================================================
   
     function getQuery() {
 
@@ -175,11 +177,12 @@ $( document ).ready(function() {
         getLocationID();
     }
 
+    // =====================================================
+
     // save url into local storage and then redirects to results.html
-    function saveCriteria(event) {
-        event.preventDefault();
+    function saveCriteria() {
         getQuery();
     };
     
-    $("button").click(saveCriteria());
+    $("#SearchBtn").click(saveCriteria);
 });
