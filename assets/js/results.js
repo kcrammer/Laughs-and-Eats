@@ -5,8 +5,81 @@ $( document ).ready(function() {
     // =====================================================
    
     var zomQuery = localStorage.getItem("zomQuery");
+    var start = 0
+    var finish = 4
+
+    // this function creates divs in html to place information from zomato and will iterate start and finish variable so if this function is called again it will iterate throught the next 4 restaurants in the array until there are no more restaurants
+    function createLocations() {
+        
+        for (i = start; i < finish; i++) {
+            
+            //create all the divs for zomato info
+            var foodResultsDiv = $(".food-results");
+            var colDiv = $("<div>").attr("class", "col-lg-3");
+            var workingsDiv = $("<div>").attr("class", "card");
+            var workingImg = $("<img>").attr("class", "card-img-top").attr("alt", "food-pic");
+            var cardDiv = $("<div>").attr("class", "card-body");
+            var titleTag = $("<h5>").attr("class", "card-title");
+            var detailsDiv = $("<div>");
+            var mapLink = $("<a>");
+
+            mapLink.attr("href", "https://www.google.com/maps/search/?api=1&query=" + restaurant[i].restaurant.name + "+" + restaurant[i].restaurant.location.address);
+            mapLink.attr("target", "_blank");
 
 
+            // if no thumbnail put in this placeholder image
+            if (restaurant[i].restaurant.thumb == "") {
+                workingImg.attr('src', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3I66sHZ_BqxNXrtyEIjoRV2UouTA9FGjeHJYaQXTP_7bUBgCC&s")
+            }
+            else {
+                workingImg.attr('src', restaurant[i].restaurant.thumb)
+            }
+            
+            //setting variables to information in the DOM
+            titleTag.text(restaurant[i].restaurant.name)
+            var cuisine = restaurant[i].restaurant.cuisines
+            var phoneNum = restaurant[i].restaurant.phone_numbers
+            var priceRange = restaurant[i].restaurant.price_range
+            var highlights = restaurant[i].restaurant.highlights
+            var address = restaurant[i].restaurant.location.address
+            var userScore = restaurant[i].restaurant.user_rating.aggregate_rating
+            var userRating = restaurant[i].restaurant.user_rating.rating_text
+            var hours = restaurant[i].restaurant.timings
+
+            //loop to create a number of dollar signs based on the price value in the DOM
+            var price = ""
+            var highlight = "Highlights: "
+            for (j = 0; j < priceRange; j++) {
+                price += "$"
+            }
+            //loop to create all the highlighs a particular restaurant has attributed to it
+            for (k = 0; k < highlights.length; k++) {
+                highlight += highlights[k] + ", "
+            }
+
+            // appending all information to the correct html divs
+            detailsDiv.append(mapLink.text("Address: " + address))
+            detailsDiv.append($("<p>").text("Phone: " + phoneNum))
+            detailsDiv.append($("<p>").text("User Ratings: " + userScore + ", " + userRating))
+            detailsDiv.append($("<p>").text("Cuisine: " + cuisine))
+            detailsDiv.append($("<p>").text("Price range: " + price))
+            detailsDiv.append($("<p>").text("Hours: " + hours))
+            detailsDiv.append($("<p>").text(highlight))
+
+            cardDiv.append(titleTag);
+            cardDiv.append(detailsDiv);
+            workingsDiv.append(workingImg)
+            workingsDiv.append(cardDiv)
+            colDiv.append(workingsDiv);
+            foodResultsDiv.append(colDiv);
+        }
+
+        start = start + 4;
+        finish = finish + 4;
+        console.log(start, finish)
+    }
+
+    // zomato API call function
     function coordSearch() {
         $.ajax({
           url: zomQuery,
@@ -16,72 +89,10 @@ $( document ).ready(function() {
           },
         }).then(function(response) {
 
-            var restaurant = response.restaurants
+            restaurant = response.restaurants
             console.log(restaurant)
 
-            // loop for the amount of restaurants desired to appear currently set to 4 
-            for (i = 0; i < 4; i++) {
-                
-                var foodResultsDiv = $(".food-results");
-                var colDiv = $("<div>").attr("class", "col-lg-3");
-                var workingsDiv = $("<div>").attr("class", "card");
-                var workingImg = $("<img>").attr("class", "card-img-top").attr("alt", "food-pic");
-                var cardDiv = $("<div>").attr("class", "card-body");
-                var titleTag = $("<h5>").attr("class", "card-title");
-                var detailsDiv = $("<div>");
-                var mapLink = $("<a>");
-
-                mapLink.attr("href", "https://www.google.com/maps/search/?api=1&query=" + restaurant[i].restaurant.name + "+" + restaurant[i].restaurant.location.address);
-                mapLink.attr("target", "_blank");
-
-
-                // if no thumbnail remove alt attribute so it does not show up in the html
-                if (restaurant[i].restaurant.thumb == "") {
-                    console.log("this")
-                    workingImg.attr('src', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3I66sHZ_BqxNXrtyEIjoRV2UouTA9FGjeHJYaQXTP_7bUBgCC&s")
-                }
-                else {
-                    workingImg.attr('src', restaurant[i].restaurant.thumb)
-                }
-                
-
-                titleTag.text(restaurant[i].restaurant.name)
-                var cuisine = restaurant[i].restaurant.cuisines
-                var phoneNum = restaurant[i].restaurant.phone_numbers
-                var priceRange = restaurant[i].restaurant.price_range
-                var highlights = restaurant[i].restaurant.highlights
-                var address = restaurant[i].restaurant.location.address
-                var userScore = restaurant[i].restaurant.user_rating.aggregate_rating
-                var userRating = restaurant[i].restaurant.user_rating.rating_text
-                var hours = restaurant[i].restaurant.timings
-
-                var price = ""
-                var priceValue = 0
-                var highlight = "Highlights: "
-                for (j = 0; j < priceRange; j++) {
-                    price += "$"
-                    priceValue++
-                }
-                for (k = 0; k < highlights.length; k++) {
-                    highlight += highlights[k] + ", "
-                }
-
-
-                detailsDiv.append(mapLink.text("Address: " + address))
-                detailsDiv.append($("<p>").text("Phone: " + phoneNum))
-                detailsDiv.append($("<p>").text("User Ratings: " + userScore + ", " + userRating))
-                detailsDiv.append($("<p>").text("Cuisine: " + cuisine))
-                detailsDiv.append($("<p>").text("Price range: " + price))
-                detailsDiv.append($("<p>").text("Hours: " + hours))
-                detailsDiv.append($("<p>").text(highlight))
-
-                cardDiv.append(titleTag);
-                cardDiv.append(detailsDiv);
-                workingsDiv.append(workingImg)
-                workingsDiv.append(cardDiv)
-                colDiv.append(workingsDiv);
-                foodResultsDiv.append(colDiv);
-            }
+            createLocations(restaurant)
         });
     }
       
@@ -157,4 +168,7 @@ $( document ).ready(function() {
     };
 
     displayJokes();
+
+
+    $("#more-results").click(createLocations)
 });
