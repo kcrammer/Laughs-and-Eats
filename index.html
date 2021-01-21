@@ -20,7 +20,7 @@
     <div class="container mb-5">
       <h2 class="text-center"></h2>
 
-      <div class="row">
+      <div class="row mt-5">
 
         <div class="col-lg-5 form-container">
 
@@ -54,7 +54,7 @@
             <label for="xmas">Christmas</label>
           </div>
 
-          <div id="blacklist" class="mb-3">
+          <div id="blacklist" class="mb-3 hide">
             <h5>Select Flags to Blacklist:</h5>
 
               <input type="checkbox" id="nsfw" name="nsfw">
@@ -78,7 +78,7 @@
           <label for="explicit">Explicit</label>
             </div>
 
-            <div id="joke-type" class="mb-3">
+            <div id="joke-type" class="mb-3 hide">
               <h5>Select at least one joke type:</h5>
                 <input type="checkbox" id="single" name="single">
                 <label for="single">Single</label>
@@ -86,12 +86,12 @@
                 <label for="two-part">Two-Part</label>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 hide">
               <h5>Search keywords:</h5>
               <input type="text" id="keyword-search">
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 hide">
               <h5>How many jokes do you need?</h5>
               <select name="number-jokes" id="number-jokes">
                 <option value="1">1</option>
@@ -106,7 +106,7 @@
                 <option value="10">10</option>
               </select>
           </div>
-
+          <button id="joke-more" class="btn btn-primary">Show More</button>
         </form>
       </div>
            
@@ -138,9 +138,9 @@
               <h5>Search by city:</h5>
                 <input type="text" id="city-search" class="mb-3">
               
-              
-              <h5>Search by cuisine:</h5>
-              <div class="mb-3" id="cuisine-search">
+
+              <div class="mb-3 hide" id="cuisine-search">
+                <h5>Search by cuisine:</h5>
               <input type="checkbox" id="182" name="Breakfast">
                 <label for="Breakfast">Breakfast</label>
               <input type="checkbox" id="1" name="American">
@@ -191,25 +191,32 @@
               <input type="checkbox" id="99" name="Vietnamese">
                 <label for="Vietnamese">Vietnamese</label>
               </div>
-              <h5>Sort by:</h5>
 
-              <select name="sorting-categories" id="sort-by" class="mb-3">
-                <option value="1"></option>
-                <option value="2">cost</option>
-                <option value="3">rating</option>
-              </select>
+              <div class="hide">
+                <h5>Sort by:</h5>
+                <select name="sorting-categories" id="sort-by" class="mb-3">
+                  <option value="1"></option>
+                  <option value="2">cost</option>
+                  <option value="3">rating</option>
+                </select>
+            </div>
 
+            <div class="hide">
               <h5>Order:</h5>
               <select name="sorting-order" id="sort-order">
                 <option value="1"></option>
                 <option value="2">ascending</option>
                 <option value="3">decending</option>
               </select>
+            </div>
+            <div>
+              <button id="food-more" class="btn btn-primary">Show More</button>
+            </div>
           </form>
 
       </div>
       <div class="input-group-append">
-            <button class="input-group-text btn btm-primary " id="basic-addon2">Search</button>
+            <button class="input-group-text btn btm-primary item-center" id="basic-addon2">Search</button>
           </div>
   </div>
 </div>
