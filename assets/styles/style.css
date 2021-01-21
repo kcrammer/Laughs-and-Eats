@@ -1,8 +1,12 @@
-header{
+body {
     font-family: 'Poppins', sans-serif; 
+}
+
+header{
     color: #ffc259;
     background-image: url("https://images.unsplash.com/photo-1494415859740-21e878dd929d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80");
     padding: 25px;
+    text-shadow: 2px 2px 5px#1a1818a4
 }
 
 .bkg-img{
@@ -18,7 +22,6 @@ header{
 
 /* index.html */
 .form-container{
-    font-family: 'Poppins', sans-serif;
     border: solid #ff9959 10px;
     border-radius: 10px;
     padding: 20px;
@@ -34,10 +37,19 @@ header{
 #food-more, #joke-more {
     background-color:  #ff9959;
 }
+
+#searchBtn {
+    background-color:  #ff9959;
+    border: solid #ffc259;
+    color:rgb(230, 227, 218)
+    
+}
+
 .about{
-    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
     background-image: url("https://images.unsplash.com/photo-1494415859740-21e878dd929d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80");
     padding: 20px;
+    text-shadow: 2px 2px 5px  rgb(230, 227, 218);
 }
 
 /* Hide initial values */
