@@ -34,7 +34,7 @@ header{
     border-bottom: #ff9959 solid 2px;
 }
 
-#food-more, #joke-more {
+#food-more, #joke-more, #more-results, #try-again {
     background-color:  #ff9959;
 }
 
