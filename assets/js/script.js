@@ -184,5 +184,5 @@ $( document ).ready(function() {
         getQuery();
     };
     
-    $("#SearchBtn").click(saveCriteria);
+    $("#searchBtn").click(saveCriteria);
 });
