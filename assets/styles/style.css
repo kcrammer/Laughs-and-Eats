@@ -33,6 +33,11 @@ header{
     padding: 20px;
 }
 
+/* Hide initial values */
+.hide{
+    display: none;
+}
+
 
 /* results html page */
 .food-results{
