@@ -20,7 +20,7 @@ $( document ).ready(function() {
             console.log(restaurant)
 
             // loop for the amount of restaurants desired to appear currently set to 4 
-            for (i = 0; i < 8; i++) {
+            for (i = 0; i < 4; i++) {
                 
                 var foodResultsDiv = $(".food-results");
                 var colDiv = $("<div>").attr("class", "col-lg-3");
@@ -33,9 +33,13 @@ $( document ).ready(function() {
 
                 // if no thumbnail remove alt attribute so it does not show up in the html
                 if (restaurant[i].restaurant.thumb == "") {
-                    workingImg.attr('alt', "")
+                    console.log("this")
+                    workingImg.attr('src', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3I66sHZ_BqxNXrtyEIjoRV2UouTA9FGjeHJYaQXTP_7bUBgCC&s")
                 }
-                workingImg.attr('src', restaurant[i].restaurant.thumb)
+                else {
+                    workingImg.attr('src', restaurant[i].restaurant.thumb)
+                }
+                
 
                 titleTag.text(restaurant[i].restaurant.name)
                 var cuisine = restaurant[i].restaurant.cuisines
