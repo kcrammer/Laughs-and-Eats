@@ -1,14 +1,44 @@
 $( document ).ready(function() {
 
-    var favJokes = JSON.parse(localStorage.getItem("favJokes"));
-    var favFood = JSON.parse(localStorage.getItem("favFood"));
+    var favFood = JSON.parse(localStorage.getItem("favorites"));
+    var favJokes = JSON.parse(localStorage.getItem("favorite-jokes"));
 
-    // Hardcoded for testing
-    favFood = ["16769546", "16771079"];
-
-    for (i = 0; i < favFood.length; i++) {
-        getRest(favFood[i]);
+    if (favFood === null) {
+        favFood = [];
     }
+
+    if (favJokes === null) {
+        favJokes = [];
+    }
+
+    if (favFood.length !== 0) {
+        for (i = 0; i < favFood.length; i++) {
+            getRest(favFood[i]);
+        }
+    }
+    else {
+        emptyMsg(1);
+    }
+
+    if (favJokes.length !== 0) {
+        for (i = 0; i < favJokes.length; i++) {
+            getJoke(favJokes[i]);
+        }
+    }
+    else {
+        emptyMsg(2);
+    }
+
+    function emptyMsg(x) {
+        var emptyMsg = $("<h4>").text("No favotites are set").css("text-decoration", "underline");
+        
+        if (x === 1) {
+            $("#foodResults").append(emptyMsg);
+        } else {
+            $("#jokeResults").append(emptyMsg);
+        }
+    }
+
 
     function getRest(i)  {
         $.ajax({
@@ -24,14 +54,13 @@ $( document ).ready(function() {
     }
 
     function displayFoodList(x) {
-        var newRow = $("<li>").attr("class", "row");
+        var newRow = $("<li>").attr("class", "row my-2");
         var newBodyRow = $("<div>").attr("class", "row");
         var newBody = $("<div>").attr("class", "col-xs-6 px-4");
         var titleRow = $("<div>").attr("class", "row");
         var descRow = $("<div>").attr("class", "row");
-        var removeBtn = $("<img>").attr("class", "col-xs-3 px-2 my-3").attr("alt", "remove button").attr("src", "https://cdn.icon-icons.com/icons2/1350/PNG/64/xbutton_87873.png").attr("data-id", x.id);
+        var removeBtn = $("<img>").attr("class", "col-xs-3 px-2 my-3 foodBtn").attr("alt", "remove button").attr("src", "assets/images/xbutton_87873.png").attr("data-id", x.id);
         var mapLink = $("<a>");
-        var newHr = $("<hr>");
 
         mapLink.attr("href", "https://www.google.com/maps/search/?api=1&query=" + x.name + "+" + x.location.address);
         mapLink.attr("target", "_blank");
@@ -65,7 +94,95 @@ $( document ).ready(function() {
         newRow.append(newBodyRow);
 
         $("#foodResults").append(newRow);
-        $("#foodResults").append(newHr);
     }
+
+    function getJoke(i)  {
+        $.ajax({
+          url: "https://v2.jokeapi.dev/joke/Any?idRange=" + i,
+          method: "GET",
+        }).then(function(response) {
+            console.log(response);
+            displayJokeList(response);
+        });
+    }
+
+    function displayJokeList(response) {
+
+        var removeBtn = $("<img>").attr("class", "col-xs-3 px-2 my-3 jokeBtn").attr("alt", "remove button").attr("src", "assets/images/xbutton_87873.png").attr("data-id", response.id);
+        var newBodyRow = $("<li>").attr("class", "row");
+
+        removeBtn.css("max-height", "50px");
+        removeBtn.css("cursor", "pointer");
+
+        newBodyRow.append(removeBtn);
+
+        // sets var jokes to object assuming it has multiple jokes
+        var jokes = response.jokes
+                
+
+        // single joke objects do not have the jokes object inside it so if response.jokes is undefined this will run 
+        if (jokes == null){
+            // if a joke has two parts 
+            if (response.type == "twopart") {
+                var jokeset = response.setup;
+                var jokedelivery = response.delivery;
+                
+                var myjoke = $("<p>").text(jokeset + " " + jokedelivery).attr("class", "col-xs-7 list-group-item");
+
+                myjoke.css("max-width", "70%");
+
+                newBodyRow.append(myjoke);
+            }
+            // if a joke has only one part
+            else if (response.type == "single"){
+                var jokeset = response.joke;
+                
+                var myjoke = $("<p>").text(jokeset).attr("class", "col-xs-7 list-group-item");
+
+                myjoke.css("max-width", "70%");
+
+                newBodyRow.append(myjoke);          
+            }
+        } else { 
+            for (i = 0; i < jokes.length; i++) {
+                // if a joke has two parts 
+                if (jokes[i].type == "twopart") {
+                    var jokeset = jokes[i].setup;
+                    var jokedelivery = jokes[i].delivery;
+                    
+                    var myjoke = $("<p>").text(jokeset + " " + jokedelivery).attr("class", "col-xs-7 list-group-item");
+
+                    myjoke.css("max-width", "70%");
+
+                    newBodyRow.append(myjoke);
+                }
+                // if a joke has only one part
+                else if (jokes[i].type == "single"){
+                    var jokeset = jokes[i].joke;
+                    
+                    var myjoke = $("<p>").text(jokeset).attr("class", "col-xs-7 list-group-item");               
+
+                    myjoke.css("max-width", "70%");
+
+                    newBodyRow.append(myjoke);          
+                }
+            }
+        }
+        
+        $("#jokeResults").append(newBodyRow);
+    }
+
+    $(document).on("click", ".foodBtn", function() {
+        foodID = $(this).attr("data-id");
+        favFood.splice(favFood.indexOf(foodID), 1);
+        $(this).parent().remove();
+        localStorage.setItem("favorites", JSON.stringify(favFood));
+    });
+
+    $(document).on("click", ".jokeBtn", function() {
+        jokeID = $(this).attr("data-id");
+        favFood.splice(favFood.indexOf(jokeID), 1);
+        $(this).parent().remove();
+    });
 
 });
