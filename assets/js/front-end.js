@@ -1,14 +1,17 @@
 var showMore = false;
 
+//Function to expand food input form
 $("#food-more").on("click", function(event){
     event.preventDefault();
-    console.log("click");
+    
+    //check if form need to expand or minimize
+    //Expand
     if(!showMore){
-        console.log("yay")
         $(".hidden-element-food").removeClass("hide");
         $("#food-more").text("Show Less");
         showMore = true;
     }
+    //minimize
     else{
         $(".hidden-element-food").addClass("hide");
         $("#food-more").text("Show More");
@@ -16,15 +19,18 @@ $("#food-more").on("click", function(event){
     }
 })
 
+//Function to expand joke input form
 $("#joke-more").on("click", function(event) {
     event.preventDefault();
-    console.log("click");
+
+    //check if need to expand or minimize
+    //expand
     if(!showMore){
-        console.log("yay")
         $(".hidden-element").removeClass("hide");
         $("#joke-more").text("Show Less");
         showMore = true;
     }
+    //minimize
     else{
         $(".hidden-element").addClass("hide");
         $("#joke-more").text("Show More");
