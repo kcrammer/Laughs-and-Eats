@@ -8,8 +8,8 @@ $( document ).ready(function() {
     var start = 0
     var finish = 4
 
+    //saves favorite restaurant to local storage
     function saveButtonClick() {
-        console.log(this.value)
         var favorites = JSON.parse(localStorage.getItem("favorites"));
         
         if (favorites == null){
@@ -23,6 +23,7 @@ $( document ).ready(function() {
         localStorage.setItem("favorites", JSON.stringify(favorites));
     }
 
+    // if you get no restaurants from zomato this will show an error message
     function noRestaurant() {
         var foodResultsDiv = $("#results");
         var workingsDiv = $("<div>").attr("class", "card");
@@ -202,8 +203,7 @@ $( document ).ready(function() {
         }).then(function(response) {
 
             restaurant = response.restaurants
-            // restaurant = []
-            console.log(restaurant)
+
             if (restaurant == ""){
                 noRestaurant()
             }
@@ -224,8 +224,9 @@ $( document ).ready(function() {
     // Joke type: ?type=type i.e. single, twopart
     // Joke amount: ?amount=number
 
+
+    // saves favorite jokes to local storage
     function saveJokes() {
-        console.log(this.value)
         var favorites = JSON.parse(localStorage.getItem("favorite-jokes"));
         
         if (favorites == null){
@@ -249,7 +250,6 @@ $( document ).ready(function() {
             url: query,
             method: "GET"
         }).then(function(response){
-            console.log(response)
             
             // sets var jokes to object assuming it has multiple jokes
             var jokes = response.jokes
@@ -328,8 +328,5 @@ $( document ).ready(function() {
 
     displayJokes();
 
-
     $("#more-results").click(createLocations);
-
-   
 });
