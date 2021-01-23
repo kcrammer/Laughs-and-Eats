@@ -255,8 +255,6 @@ $( document ).ready(function() {
             url: query,
             method: "GET"
         }).then(function(response){
-
-            console.log(response)
             
             // sets var jokes to object assuming it has multiple jokes
             var jokes = response.jokes
