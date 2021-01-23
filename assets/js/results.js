@@ -329,4 +329,8 @@ $( document ).ready(function() {
     displayJokes();
 
     $("#more-results").click(createLocations);
+
+    $(document).on("click", "#headerTitle", function() {
+        window.location.href = "index.html";
+    });
 });
