@@ -79,8 +79,8 @@ $( document ).ready(function() {
             var saveID = restaurant[0].restaurant.id
                
     
-            var saveBtn = $("<button>").attr("value", saveID).text("Save Favorites").attr("class", "btn-minor")
-            saveBtn.attr("class", "btn btn-primary save-button").attr("id", "try-again")
+            var saveBtn = $("<button>").attr("value", saveID).text("Save Favorites")
+            saveBtn.attr("class", "btn btn-minor save-button ").attr("id", "try-again")
             saveBtn.click(saveButtonClick)
     
             //loop to create a number of dollar signs based on the price value in the DOM
@@ -152,8 +152,8 @@ $( document ).ready(function() {
                 var saveID = restaurant[i].restaurant.id
                
     
-                var saveBtn = $("<button>").attr("value", saveID).text("Save Favorites").attr("class", "btn-minor")
-                saveBtn.attr("class", "btn btn-primary save-button").attr("id", "try-again")
+                var saveBtn = $("<button>").attr("value", saveID).text("Save Favorites")
+                saveBtn.attr("class", "btn btn-primary btn-minor save-button fav-btn").attr("id", "try-again")
                 saveBtn.click(saveButtonClick)
     
                 //loop to create a number of dollar signs based on the price value in the DOM
