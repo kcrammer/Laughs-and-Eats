@@ -1,12 +1,18 @@
 # Laughs & Eats
 
-Description: Laughs & Eats offers premium and up-to-date restaurant listings along with the funniest jokes on the internet. Our service is guaranteed to impress a collegue or a date with the perfect restaurant choice. Our jokes can cover any scenario, from breaking the ice on a first date, to blowing away a business partner!
+## Overview
+
+Laughs & Eats offers premium and up-to-date restaurant listings along with the funniest jokes on the internet. Our service is guaranteed to impress a collegue or a date with the perfect restaurant choice. Our jokes can cover any scenario, from breaking the ice on a first date, to blowing away a business partner!
 
 Outcome of actual date/meeting not guaranteed.
 
-Installation: None required
+## Installation
 
-Usage: Follow the link https://kcrammer.github.io/Laughs-and-Eats/ to navigate to the application. 
+None required
+
+## Usage
+
+Follow the link https://kcrammer.github.io/Laughs-and-Eats/ to navigate to the application. 
 
 On the left, select your search criteria for jokes. Choose from several joke categories. Click 'Show More' to select flags to blacklist, select joke type, enter search keywords, and select how many jokes are needed (1-10). Click 'Show Less' to retract search criteria.
 
@@ -16,7 +22,7 @@ Click 'Search' to populate your results.
 
 Use the navigation bar to hop to your favorite jokes and restaurants or return home to begin a new search.
 
-# Screenshots
+## Screenshots
 
 ![alt text](assets/images/Laughs-Eats-Screenshot.png)
 ![alt text](assets/images/Laughs-Eats-Screenshot2.png)
