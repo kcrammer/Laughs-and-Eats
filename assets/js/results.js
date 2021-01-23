@@ -23,51 +23,66 @@ $( document ).ready(function() {
         localStorage.setItem("favorites", JSON.stringify(favorites));
     }
 
+    function noRestaurant() {
+        var foodResultsDiv = $("#results");
+        var workingsDiv = $("<div>").attr("class", "card");
+        var cardDiv = $("<div>").attr("class", "card-body");
+        var titleTag = $("<h5>").attr("class", "card-title");
+        var detailsDiv = $("<p>");
+        
+        titleTag.text("Woops!");
+        detailsDiv.text("Try reducing your search criteria to find some great restaurants!")
+            
+    
+        cardDiv.append(titleTag);
+        cardDiv.append(detailsDiv);
+        workingsDiv.append(cardDiv);
+        foodResultsDiv.append(workingsDiv);
+        foodResultsDiv.attr("class", "text-center full-width")
+    }
+
     // this function creates divs in html to place information from zomato and will iterate start and finish variable so if this function is called again it will iterate throught the next 4 restaurants in the array until there are no more restaurants
     function createLocations() {
-        
-        for (i = start; i < finish; i++) {
-            
-            //create all the divs for zomato info
+        if (restaurant.length === 1){
             var foodResultsDiv = $("#results");
-            var colDiv = $("<div>").attr("class", "col-md-6 col-lg-3");
             var workingsDiv = $("<div>").attr("class", "card");
             var workingImg = $("<img>").attr("class", "card-img-top").attr("alt", "food-pic");
             var cardDiv = $("<div>").attr("class", "card-body");
             var titleTag = $("<h5>").attr("class", "card-title");
             var detailsDiv = $("<div>");
             var mapLink = $("<a>");
-            
-
-            mapLink.attr("href", "https://www.google.com/maps/search/?api=1&query=" + restaurant[i].restaurant.name + "+" + restaurant[i].restaurant.location.address);
+                
+    
+            mapLink.attr("href", "https://www.google.com/maps/search/?api=1&query=" + restaurant[0].restaurant.name + "+" + restaurant[0].restaurant.location.address);
             mapLink.attr("target", "_blank");
-
-
+    
+    
             // if no thumbnail put in this placeholder image
             if (restaurant[i].restaurant.thumb == "") {
                 workingImg.attr('src', 'assets/images/restaurantImagePlaceHolder .png')
             }
             else {
-                workingImg.attr('src', restaurant[i].restaurant.thumb)
+                workingImg.attr('src', restaurant[0].restaurant.thumb)
             }
-            
+            workingImg.attr("class", "small-img")
+                
             //setting variables to information in the DOM
-            titleTag.text(restaurant[i].restaurant.name)
-            var cuisine = restaurant[i].restaurant.cuisines
-            var phoneNum = restaurant[i].restaurant.phone_numbers
-            var priceRange = restaurant[i].restaurant.price_range
-            var highlights = restaurant[i].restaurant.highlights
-            var address = restaurant[i].restaurant.location.address
-            var userScore = restaurant[i].restaurant.user_rating.aggregate_rating
-            var userRating = restaurant[i].restaurant.user_rating.rating_text
-            var hours = restaurant[i].restaurant.timings
-            var saveID = restaurant[i].restaurant.id
-           
-
-            var saveBtn = $("<button>").attr("value", saveID).text("Save Favorites")
+            titleTag.text(restaurant[0].restaurant.name)
+            var cuisine = restaurant[0].restaurant.cuisines
+            var phoneNum = restaurant[0].restaurant.phone_numbers
+            var priceRange = restaurant[0].restaurant.price_range
+            var highlights = restaurant[0].restaurant.highlights
+            var address = restaurant[0].restaurant.location.address
+            var userScore = restaurant[0].restaurant.user_rating.aggregate_rating
+            var userRating = restaurant[0].restaurant.user_rating.rating_text
+            var hours = restaurant[0].restaurant.timings
+            var saveID = restaurant[0].restaurant.id
+               
+    
+            var saveBtn = $("<button>").attr("value", saveID).text("Save Favorites").attr("class", "btn-minor")
             saveBtn.attr("class", "btn btn-primary save-button").attr("id", "try-again")
             saveBtn.click(saveButtonClick)
-
+    
             //loop to create a number of dollar signs based on the price value in the DOM
             var price = ""
             var highlight = "Highlights: "
@@ -78,7 +93,7 @@ $( document ).ready(function() {
             for (k = 0; k < highlights.length; k++) {
                 highlight += highlights[k] + ", "
             }
-
+    
             // appending all information to the correct html divs
             detailsDiv.append(mapLink.text("Address: " + address))
             detailsDiv.append($("<p>").text("Phone: " + phoneNum))
@@ -89,18 +104,91 @@ $( document ).ready(function() {
             detailsDiv.append($("<p>").text(highlight))
             detailsDiv.append(saveBtn)
             
-
+                
+    
             cardDiv.append(titleTag);
             cardDiv.append(detailsDiv);
             workingsDiv.append(workingImg)
-            workingsDiv.append(cardDiv)
-            colDiv.append(workingsDiv);
-            foodResultsDiv.append(colDiv);
+            workingsDiv.append(cardDiv);
+            foodResultsDiv.append(workingsDiv);
+            foodResultsDiv.attr("class", "text-center full-width")
         }
-
-        start = start + 4;
-        finish = finish + 4;
-        
+        else {
+            for (i = start; i < finish; i++) {
+            
+                //create all the divs for zomato info
+                var foodResultsDiv = $("#results");
+                var colDiv = $("<div>").attr("class", "col-md-6 col-lg-3");
+                var workingsDiv = $("<div>").attr("class", "card");
+                var workingImg = $("<img>").attr("class", "card-img-top").attr("alt", "food-pic");
+                var cardDiv = $("<div>").attr("class", "card-body");
+                var titleTag = $("<h5>").attr("class", "card-title");
+                var detailsDiv = $("<div>");
+                var mapLink = $("<a>");
+                
+    
+                mapLink.attr("href", "https://www.google.com/maps/search/?api=1&query=" + restaurant[i].restaurant.name + "+" + restaurant[i].restaurant.location.address);
+                mapLink.attr("target", "_blank");
+    
+    
+                // if no thumbnail put in this placeholder image
+                if (restaurant[i].restaurant.thumb == "") {
+                    workingImg.attr('src', "http://clipart-library.com/images/BigrpRd6T.png")
+                }
+                else {
+                    workingImg.attr('src', restaurant[i].restaurant.thumb)
+                }
+                
+                //setting variables to information in the DOM
+                titleTag.text(restaurant[i].restaurant.name)
+                var cuisine = restaurant[i].restaurant.cuisines
+                var phoneNum = restaurant[i].restaurant.phone_numbers
+                var priceRange = restaurant[i].restaurant.price_range
+                var highlights = restaurant[i].restaurant.highlights
+                var address = restaurant[i].restaurant.location.address
+                var userScore = restaurant[i].restaurant.user_rating.aggregate_rating
+                var userRating = restaurant[i].restaurant.user_rating.rating_text
+                var hours = restaurant[i].restaurant.timings
+                var saveID = restaurant[i].restaurant.id
+               
+    
+                var saveBtn = $("<button>").attr("value", saveID).text("Save Favorites").attr("class", "btn-minor")
+                saveBtn.attr("class", "btn btn-primary save-button").attr("id", "try-again")
+                saveBtn.click(saveButtonClick)
+    
+                //loop to create a number of dollar signs based on the price value in the DOM
+                var price = ""
+                var highlight = "Highlights: "
+                for (j = 0; j < priceRange; j++) {
+                    price += "$"
+                }
+                //loop to create all the highlighs a particular restaurant has attributed to it
+                for (k = 0; k < highlights.length; k++) {
+                    highlight += highlights[k] + ", "
+                }
+    
+                // appending all information to the correct html divs
+                detailsDiv.append(mapLink.text("Address: " + address))
+                detailsDiv.append($("<p>").text("Phone: " + phoneNum))
+                detailsDiv.append($("<p>").text("User Ratings: " + userScore + ", " + userRating))
+                detailsDiv.append($("<p>").text("Cuisine: " + cuisine))
+                detailsDiv.append($("<p>").text("Price range: " + price))
+                detailsDiv.append($("<p>").text("Hours: " + hours))
+                detailsDiv.append($("<p>").text(highlight))
+                detailsDiv.append(saveBtn)
+                
+    
+                cardDiv.append(titleTag);
+                cardDiv.append(detailsDiv);
+                workingsDiv.append(workingImg)
+                workingsDiv.append(cardDiv)
+                colDiv.append(workingsDiv);
+                foodResultsDiv.append(colDiv).attr("class", "row");
+            }
+    
+            start = start + 4;
+            finish = finish + 4;
+        }        
     }
 
     // zomato API call function
@@ -114,9 +202,14 @@ $( document ).ready(function() {
         }).then(function(response) {
 
             restaurant = response.restaurants
+            // restaurant = []
             console.log(restaurant)
-
-            createLocations(restaurant)
+            if (restaurant == ""){
+                noRestaurant()
+            }
+            else {
+                createLocations(restaurant)
+            }
         });
     }
       
