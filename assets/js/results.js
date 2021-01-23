@@ -133,7 +133,7 @@ $( document ).ready(function() {
     
                 // if no thumbnail put in this placeholder image
                 if (restaurant[i].restaurant.thumb == "") {
-                    workingImg.attr('src', "http://clipart-library.com/images/BigrpRd6T.png")
+                    workingImg.attr('src', "assets/images/restaurantImagePlaceHolder .png")
                 }
                 else {
                     workingImg.attr('src', restaurant[i].restaurant.thumb)
