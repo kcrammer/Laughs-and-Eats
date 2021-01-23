@@ -171,4 +171,8 @@ $( document ).ready(function() {
     };
     
     $("#searchBtn").click(saveCriteria);
+
+    $(document).on("click", "#headerTitle", function() {
+        window.location.href = "index.html";
+    });
 });

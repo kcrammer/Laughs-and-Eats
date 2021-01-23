@@ -200,4 +200,7 @@ $( document ).ready(function() {
         }
     });
 
+    $(document).on("click", "#headerTitle", function() {
+        window.location.href = "index.html";
+    });
 });

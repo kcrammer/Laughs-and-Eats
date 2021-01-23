@@ -11,6 +11,10 @@ header{
     text-shadow: 2px 2px 5px#1a1818a4
 }
 
+#headerTitle{
+    cursor: pointer;
+}
+
 /* buttons */
 .btn-minor {
     background-color:  #ff9959;
