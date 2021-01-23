@@ -185,6 +185,7 @@ $( document ).ready(function() {
         localStorage.setItem("favorites", JSON.stringify(favFood));
         
         if (favFood.length === 0) {
+            $("#foodResults").empty();
             emptyMsg(1);
         }
     });
@@ -196,6 +197,7 @@ $( document ).ready(function() {
         localStorage.setItem("favorite-jokes", JSON.stringify(favJokes));
         
         if (favJokes.length === 0) {
+            $("#jokeResults").empty();
             emptyMsg(2);
         }
     });
