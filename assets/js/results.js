@@ -9,9 +9,18 @@ $( document ).ready(function() {
     var finish = 4
 
     function saveButtonClick() {
-        event.preventDefault();
+        console.log(this.value)
+        var favorites = JSON.parse(localStorage.getItem("favorites"));
+        
+        if (favorites == null){
+            favorites = []
+        }
 
-        console.log(this.attr("id"))
+        if (favorites.includes(this.value) == false) {
+            favorites.push(this.value);
+        }
+
+        localStorage.setItem("favorites", JSON.stringify(favorites));
     }
 
     // this function creates divs in html to place information from zomato and will iterate start and finish variable so if this function is called again it will iterate throught the next 4 restaurants in the array until there are no more restaurants
@@ -20,8 +29,8 @@ $( document ).ready(function() {
         for (i = start; i < finish; i++) {
             
             //create all the divs for zomato info
-            var foodResultsDiv = $(".food-results");
-            var colDiv = $("<div>").attr("class", "col-lg-3");
+            var foodResultsDiv = $("#results");
+            var colDiv = $("<div>").attr("class", "col-md-6 col-lg-3");
             var workingsDiv = $("<div>").attr("class", "card");
             var workingImg = $("<img>").attr("class", "card-img-top").attr("alt", "food-pic");
             var cardDiv = $("<div>").attr("class", "card-body");
@@ -55,8 +64,9 @@ $( document ).ready(function() {
             var saveID = restaurant[i].restaurant.id
            
 
-            var saveBtn = $("<button>").attr("id", saveID).text("Save Favorites")
-            saveBtn.attr("class", "btn btn-primary save-button")
+            var saveBtn = $("<button>").attr("value", saveID).text("Save Favorites")
+            saveBtn.attr("class", "btn btn-primary save-button").attr("id", "try-again")
+            saveBtn.click(saveButtonClick)
 
             //loop to create a number of dollar signs based on the price value in the DOM
             var price = ""
@@ -184,7 +194,7 @@ $( document ).ready(function() {
     displayJokes();
 
 
-    $("#more-results").click(createLocations)
+    $("#more-results").click(createLocations);
 
-    $(".save-button").click(saveButtonClick)
+   
 });
