@@ -18,7 +18,7 @@ Use the navigation bar to hop to your favorite jokes and restaurants or return h
 
 # Screenshots
 
-![alt text] (assets/images/Laughs-Eats Screenshot.png)
-![alt text] (assets/images/Laughs-Eats Screenshot2.png)
-![alt text] (assets/images/Laughs-Eats Screenshot3.png)
-![alt text] (assets/images/Laughs-Eats Screenshot4.png)
+![alt text](assets/images/Laughs-Eats-Screenshot.png)
+![alt text](assets/images/Laughs-Eats-Screenshot2.png)
+![alt text](assets/images/Laughs-Eats-Screenshot3.png)
+![alt text](assets/images/Laughs-Eats-Screenshot4.png)
