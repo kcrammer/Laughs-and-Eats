@@ -223,6 +223,21 @@ $( document ).ready(function() {
     // Blacklist Flags: ?blacklistFlags=flag1[,flag2,...] i.e. nsfw, religious, political, racist, sexist, explicit
     // Joke type: ?type=type i.e. single, twopart
     // Joke amount: ?amount=number
+
+    function saveJokes() {
+        console.log(this.value)
+        var favorites = JSON.parse(localStorage.getItem("favorite-jokes"));
+        
+        if (favorites == null){
+            favorites = []
+        }
+
+        if (favorites.includes(this.value) == false) {
+            favorites.push(this.value);
+        }
+
+        localStorage.setItem("favorite-jokes", JSON.stringify(favorites));
+    }
   
     function displayJokes() {
 
@@ -246,17 +261,29 @@ $( document ).ready(function() {
                 if (response.type == "twopart") {
                     var jokeset = response.setup;
                     var jokedelivery = response.delivery;
+                    var jokeID = response.id;
                     
-                    var myjoke = $("<li>").text(jokeset + " " + jokedelivery).attr("class", "list-group-item")
+                    var myjoke = $("<li>").text(jokeset + " " + jokedelivery).attr("class", "list-group-item");
 
-                    $("#joke-entries").append(myjoke)
+                    var saveBtn = $("<button>").attr("value", jokeID).text("Save").attr("class", "btn-minor");
+                    saveBtn.attr("class", "btn btn-primary save-button joke-btn").attr("id", "try-again");
+                    saveBtn.click(saveJokes);
+
+                    myjoke.append(saveBtn);
+                    $("#joke-entries").prepend(myjoke);
                 }
                 // if a joke has only one part
                 else if (response.type == "single"){
                     var jokeset = response.joke;
+                    var jokeID = response.id;
                    
-                    var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item")              
+                    var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item")  
+                    
+                    var saveBtn = $("<button>").attr("value", jokeID).text("Save").attr("class", "btn-minor");
+                    saveBtn.attr("class", "btn btn-primary save-button joke-btn").attr("id", "try-again");
+                    saveBtn.click(saveJokes);
 
+                    myjoke.prepend(saveBtn);
                     $("#joke-entries").append(myjoke);          
                 }
             }
@@ -266,17 +293,29 @@ $( document ).ready(function() {
                     if (jokes[i].type == "twopart") {
                         var jokeset = jokes[i].setup;
                         var jokedelivery = jokes[i].delivery;
+                        var jokeID = jokes[i].id
                         
-                        var myjoke = $("<li>").text(jokeset + " " + jokedelivery).attr("class", "list-group-item")
+                        var myjoke = $("<li>").text(jokeset + " " + jokedelivery).attr("class", "list-group-item");
 
+                        var saveBtn = $("<button>").attr("value", jokeID).text("Save").attr("class", "btn-minor");
+                        saveBtn.attr("class", "btn btn-primary save-button joke-btn").attr("id", "try-again");
+                        saveBtn.click(saveJokes);
+
+                        myjoke.prepend(saveBtn);
                         $("#joke-entries").append(myjoke)
                     }
                     // if a joke has only one part
                     else if (jokes[i].type == "single"){
                         var jokeset = jokes[i].joke;
+                        var jokeID = jokes[i].id
                        
-                        var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item")               
+                        var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item");
 
+                        var saveBtn = $("<button>").attr("value", jokeID).text("Save").attr("class", "btn-minor");
+                        saveBtn.attr("class", "btn btn-primary save-button joke-btn").attr("id", "try-again");
+                        saveBtn.click(saveJokes);
+
+                        myjoke.prepend(saveBtn);
                         $("#joke-entries").append(myjoke);          
                     }
                 }
