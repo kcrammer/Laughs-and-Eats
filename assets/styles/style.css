@@ -34,16 +34,25 @@ header{
     border-bottom: #ff9959 solid 2px;
 }
 
-#food-more, #joke-more, #more-results, #try-again {
+.btn-minor {
     background-color:  #ff9959;
 }
 
-#searchBtn {
+.btn-minor:hover{
+    background-color: #e08349;
+    color: #444;
+}
+
+.btn-main {
     background-color:  #ff9959;
     border: solid #ffc259;
-    color:rgb(230, 227, 218)
-    
+    color:rgb(230, 227, 218)  
 }
+
+.btn-main:hover{
+    background-color: #e08349;
+}
+
 
 .about{
     font-weight: 500;
