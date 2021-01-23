@@ -30,7 +30,7 @@ $( document ).ready(function() {
     }
 
     function emptyMsg(x) {
-        var emptyMsg = $("<h4>").text("No favotites are set").css("text-decoration", "underline");
+        var emptyMsg = $("<h4>").text("No favorites are set").css("text-decoration", "underline");
         
         if (x === 1) {
             $("#foodResults").append(emptyMsg);
@@ -177,12 +177,21 @@ $( document ).ready(function() {
         favFood.splice(favFood.indexOf(foodID), 1);
         $(this).parent().remove();
         localStorage.setItem("favorites", JSON.stringify(favFood));
+        
+        if (favFood.length === 0) {
+            emptyMsg(1);
+        }
     });
 
     $(document).on("click", ".jokeBtn", function() {
         jokeID = $(this).attr("data-id");
         favFood.splice(favFood.indexOf(jokeID), 1);
         $(this).parent().remove();
+        localStorage.setItem("favorite-jokes", JSON.stringify(favJokes));
+        
+        if (favJokes.length === 0) {
+            emptyMsg(2);
+        }
     });
 
 });
