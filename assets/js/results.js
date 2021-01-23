@@ -278,8 +278,9 @@ $( document ).ready(function() {
                     var jokeID = response.id;
                    
                     var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item")  
-                    
-                    var saveBtn = $("<button>").attr("value", jokeID).text("Save")
+
+                    var saveBtn = $("<button>").attr("value", jokeID).text("Save");
+
                     saveBtn.attr("class", "btn btn-primary btn-minor save-button joke-btn").attr("id", "try-again");
                     saveBtn.click(saveJokes);
 
@@ -297,7 +298,8 @@ $( document ).ready(function() {
                         
                         var myjoke = $("<li>").text(jokeset + " " + jokedelivery).attr("class", "list-group-item");
 
-                        var saveBtn = $("<button>").attr("value", jokeID).text("Save")
+                        var saveBtn = $("<button>").attr("value", jokeID).text("Save");
+
                         saveBtn.attr("class", "btn btn-primary btn-minor save-button joke-btn").attr("id", "try-again");
                         saveBtn.click(saveJokes);
 
@@ -310,8 +312,9 @@ $( document ).ready(function() {
                         var jokeID = jokes[i].id
                        
                         var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item");
-                        
+
                         var saveBtn = $("<button>").attr("value", jokeID).text("Save");
+                      
                         saveBtn.attr("class", "btn btn-primary btn-minor save-button joke-btn").attr("id", "try-again");
                         saveBtn.click(saveJokes);
 
