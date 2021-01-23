@@ -265,8 +265,8 @@ $( document ).ready(function() {
                     
                     var myjoke = $("<li>").text(jokeset + " " + jokedelivery).attr("class", "list-group-item");
 
-                    var saveBtn = $("<button>").attr("value", jokeID).text("Save").attr("class", "btn-minor");
-                    saveBtn.attr("class", "btn btn-primary save-button joke-btn").attr("id", "try-again");
+                    var saveBtn = $("<button>").attr("value", jokeID).text("Save");
+                    saveBtn.attr("class", "btn btn-primary btn-minor save-button joke-btn").attr("id", "try-again");
                     saveBtn.click(saveJokes);
 
                     myjoke.append(saveBtn);
@@ -279,8 +279,8 @@ $( document ).ready(function() {
                    
                     var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item")  
                     
-                    var saveBtn = $("<button>").attr("value", jokeID).text("Save").attr("class", "btn-minor");
-                    saveBtn.attr("class", "btn btn-primary save-button joke-btn").attr("id", "try-again");
+                    var saveBtn = $("<button>").attr("value", jokeID).text("Save");
+                    saveBtn.attr("class", "btn btn-primary btn-minor save-button joke-btn").attr("id", "try-again");
                     saveBtn.click(saveJokes);
 
                     myjoke.prepend(saveBtn);
@@ -297,8 +297,8 @@ $( document ).ready(function() {
                         
                         var myjoke = $("<li>").text(jokeset + " " + jokedelivery).attr("class", "list-group-item");
 
-                        var saveBtn = $("<button>").attr("value", jokeID).text("Save").attr("class", "btn-minor");
-                        saveBtn.attr("class", "btn btn-primary save-button joke-btn").attr("id", "try-again");
+                        var saveBtn = $("<button>").attr("value", jokeID).text("Save");
+                        saveBtn.attr("class", "btn btn-primary btn-minor save-button joke-btn").attr("id", "try-again");
                         saveBtn.click(saveJokes);
 
                         myjoke.prepend(saveBtn);
@@ -311,8 +311,8 @@ $( document ).ready(function() {
                        
                         var myjoke = $("<li>").text(jokeset).attr("class", "list-group-item");
 
-                        var saveBtn = $("<button>").attr("value", jokeID).text("Save").attr("class", "btn-minor");
-                        saveBtn.attr("class", "btn btn-primary save-button joke-btn").attr("id", "try-again");
+                        var saveBtn = $("<button>").attr("value", jokeID).text("Save");
+                        saveBtn.attr("class", "btn btn-primary btn-minor save-button joke-btn").attr("id", "try-again");
                         saveBtn.click(saveJokes);
 
                         myjoke.prepend(saveBtn);
