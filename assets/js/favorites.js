@@ -76,7 +76,7 @@ $( document ).ready(function() {
         removeBtn.css("cursor", "pointer");
 
         if (x.thumb == "") {
-            workingImg.attr('src', "http://clipart-library.com/images/BigrpRd6T.png");
+            workingImg.attr('src', "assets/images/restaurantImagePlaceHolder .png");
         }
         else {
             workingImg.attr('src', x.thumb);
