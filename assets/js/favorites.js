@@ -173,7 +173,7 @@ $( document ).ready(function() {
     }
 
     $(document).on("click", ".foodBtn", function() {
-        foodID = $(this).attr("data-id");
+        var foodID = $(this).attr("data-id");
         favFood.splice(favFood.indexOf(foodID), 1);
         $(this).parent().remove();
         localStorage.setItem("favorites", JSON.stringify(favFood));
@@ -184,8 +184,8 @@ $( document ).ready(function() {
     });
 
     $(document).on("click", ".jokeBtn", function() {
-        jokeID = $(this).attr("data-id");
-        favFood.splice(favFood.indexOf(jokeID), 1);
+        var jokeID = $(this).attr("data-id");
+        favJokes.splice(favJokes.indexOf(jokeID), 1);
         $(this).parent().remove();
         localStorage.setItem("favorite-jokes", JSON.stringify(favJokes));
         
