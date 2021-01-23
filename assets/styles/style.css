@@ -65,4 +65,16 @@ header{
     padding: 10px;
 }
 
+#more-results{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.btn{
+    margin-top: 10px;
+}
+
+.full-width{
+    width: 100%;
+}
