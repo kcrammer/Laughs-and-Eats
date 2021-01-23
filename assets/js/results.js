@@ -239,6 +239,11 @@ $( document ).ready(function() {
 
         localStorage.setItem("favorite-jokes", JSON.stringify(favorites));
     }
+
+    function noJokes() {
+        var myjoke = $("<li>").text("No jokes were found that match your provided filter(s)").attr("class", "list-group-item");
+        $("#joke-entries").prepend(myjoke);
+    }
   
     function displayJokes() {
 
@@ -250,10 +255,15 @@ $( document ).ready(function() {
             url: query,
             method: "GET"
         }).then(function(response){
+
+            console.log(response)
             
             // sets var jokes to object assuming it has multiple jokes
             var jokes = response.jokes
             
+            if (response.message == "No matching joke found"){
+                noJokes()
+            }
 
             // single joke objects do not have the jokes object inside it so if response.jokes is undefined this will run 
             if (jokes == null){
