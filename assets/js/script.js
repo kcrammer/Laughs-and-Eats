@@ -8,7 +8,6 @@ $( document ).ready(function() {
     // Gets the Lat/Lon location of the searched city
     function getLocationID() {
         var city = $("#city-search").val().trim();
-        console.log("city: " + city);
         
         $.ajax({
           url: "https://developers.zomato.com/api/v2.1/locations?query=" + city,
@@ -17,7 +16,6 @@ $( document ).ready(function() {
             xhr.setRequestHeader('user-key', '2e3bd49f413e2bd7583f307f409118a5');
           },
         }).then(function(response) {
-          console.log(response);
           var zomQuery = getZomQuery(response.location_suggestions[0].latitude, response.location_suggestions[0].longitude, response.location_suggestions[0].entity_id);
           
           // Stores Zomato Query URL to storage
@@ -66,14 +64,10 @@ $( document ).ready(function() {
         sort = $("#sort-by option:selected").val();
         order = $("#sort-order option:selected").val();
 
-        console.log("sort:" + sort);
-        console.log("order: " + order);
-
         if (sort !== "1" && order !== "1") {
             url += "&sort=" + sortArray[sort] + "&order=" + orderArray[order];
         }
 
-        console.log(url);
         return url;
     }
 
@@ -122,14 +116,6 @@ $( document ).ready(function() {
         // Keyword search
         searchString = $("#keyword-search").text();
 
-        console.log(category);
-        console.log(blacklist);
-        console.log(type);
-        console.log(jokeAmount);
-        console.log(searchString);
-
-        
-
         // Sets category to Any if all categories are set, otherwise add each individual catergory
         if (category.length === 0) {
             url += "Any";
@@ -170,7 +156,7 @@ $( document ).ready(function() {
         // Sets number of jokes to display
         url += "&amount=" + jokeAmount;
 
-        console.log(url);
+        // Saves created URL to storage
         localStorage.setItem("query", url);
 
         // Gets Zomato crietria

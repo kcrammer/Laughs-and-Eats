@@ -1,5 +1,6 @@
 $( document ).ready(function() {
 
+    // Loads favorited jokes and restaurants
     var favFood = JSON.parse(localStorage.getItem("favorites"));
     var favJokes = JSON.parse(localStorage.getItem("favorite-jokes"));
 
@@ -11,6 +12,7 @@ $( document ).ready(function() {
         favJokes = [];
     }
 
+    // Checks if favorites are empty or not, will leave a message if they are empty
     if (favFood.length !== 0) {
         for (i = 0; i < favFood.length; i++) {
             getRest(favFood[i]);
@@ -29,6 +31,7 @@ $( document ).ready(function() {
         emptyMsg(2);
     }
 
+    // Will place message in restaurants box (1) or jokes box (2)
     function emptyMsg(x) {
         var emptyMsg = $("<h4>").text("No favorites are set").css("text-decoration", "underline");
         
@@ -39,7 +42,7 @@ $( document ).ready(function() {
         }
     }
 
-
+    // Zomato API to get specific restaurant by ID
     function getRest(i)  {
         $.ajax({
           url: "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + i,
@@ -48,11 +51,11 @@ $( document ).ready(function() {
             xhr.setRequestHeader('user-key', '2b1443b11e2482648013479d4eba3312');
           },
         }).then(function(response) {
-            console.log(response);
             displayFoodList(response);
         });
     }
 
+    // Restaurant list, with the X button, Image, Title, and link all in one li row each
     function displayFoodList(x) {
         var newRow = $("<li>").attr("class", "row my-2");
         var newBodyRow = $("<div>").attr("class", "row");
@@ -75,6 +78,7 @@ $( document ).ready(function() {
         removeBtn.css("max-height", "50px");
         removeBtn.css("cursor", "pointer");
 
+        // Placeholder image if returned image is blank
         if (x.thumb == "") {
             workingImg.attr('src', "assets/images/restaurantImagePlaceHolder .png");
         }
@@ -93,15 +97,16 @@ $( document ).ready(function() {
 
         newRow.append(newBodyRow);
 
+        // Adds final result to the list of restaurants
         $("#foodResults").append(newRow);
     }
 
+    // Joke API to get specific joke by ID
     function getJoke(i)  {
         $.ajax({
           url: "https://v2.jokeapi.dev/joke/Any?idRange=" + i,
           method: "GET",
         }).then(function(response) {
-            console.log(response);
             displayJokeList(response);
         });
     }
@@ -172,6 +177,7 @@ $( document ).ready(function() {
         $("#jokeResults").append(newBodyRow);
     }
 
+    // X buttons to remove selected restaurant/joke from favorites list
     $(document).on("click", ".foodBtn", function() {
         var foodID = $(this).attr("data-id");
         favFood.splice(favFood.indexOf(foodID), 1);
